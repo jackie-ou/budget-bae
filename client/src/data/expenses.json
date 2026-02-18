@@ -4,12 +4,16 @@
     "title": "Safeway",
     "price": 9.99,
     "date": "Feb 16",
-    "payer": "Jackie"
+    "payer": "Jackie",
+    "type": "Individual",
+    "mcc": "Groceries"
   },
   {
     "id": "2",
     "title": "Costco",
     "price": 200,
-    "date": "Feb 16"
+    "date": "Feb 16",
+    "type": "Joint",
+    "mcc": "Groceries"
   }
 ]

@@ -3,7 +3,8 @@ export interface ExpenseType {
   title: string;
   price: number;
   date: string; // TODO: Convert to Date type
-  category?: string;
+  mcc?: string;
   payer?: string;
   details?: string;
+  type: string;
 }
