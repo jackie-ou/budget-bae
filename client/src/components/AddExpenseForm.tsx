@@ -8,8 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Calendar } from "@/components/ui/calendar"
 import { Controller, useForm } from "react-hook-form"
-import { DatePicker } from "@/components/DatePicker";
 import {
   Field,
   FieldContent,
@@ -19,6 +19,7 @@ import {
   FieldLabel,
   FieldTitle,
 } from "@/components/ui/field"
+import { format } from "date-fns"
 import { Input } from "@/components/ui/input"
 import {
   InputGroup,
@@ -26,6 +27,11 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input-group"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {
   Select,
@@ -45,7 +51,7 @@ export function AddExpenseForm() {
       amount: "",
       type: "joint",
       description: "",
-      datePicker: "",
+      datePicker: new Date(),
       category: "",
     },
   })
@@ -72,7 +78,7 @@ export function AddExpenseForm() {
       <CardHeader>
         <CardTitle>Add Expense</CardTitle>
         <CardDescription>
-          This is the description
+          Add a purchase and choose who paid and how it should be split.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -172,9 +178,35 @@ export function AddExpenseForm() {
             <Controller
               name="datePicker"
               control={form.control}
-              render={() => (
-                <Field>
-                  <DatePicker />
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel>Date</FieldLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="justify-start font-normal"
+                        aria-invalid={fieldState.invalid}
+                      >
+                        {field.value ? (format(field.value, "PPP")) : (<span>Pick a date</span>)}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={(date) => {
+                          field.onChange(date)
+                          field.onBlur()
+                        }}
+                        defaultMonth={field.value}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
                 </Field>
               )}>
             </Controller>
@@ -247,7 +279,7 @@ export function AddExpenseForm() {
         </form>
       </CardContent>
       <CardFooter>
-        <Field orientation="horizontal">
+        <Field orientation="horizontal" className="justify-end">
           <Button type="button" variant="outline" onClick={() => form.reset()}>
             Reset
           </Button>
