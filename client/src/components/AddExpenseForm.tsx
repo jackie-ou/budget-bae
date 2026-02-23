@@ -1,7 +1,4 @@
-import { Controller, useForm } from "react-hook-form"
-import { toast } from "sonner"
 import { Apple } from "lucide-react";
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -11,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Controller, useForm } from "react-hook-form"
 import { DatePicker } from "@/components/DatePicker";
 import {
   Field,
@@ -38,11 +36,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { toast } from "sonner"
 
 export function AddExpenseForm() {
   const form = useForm({
     defaultValues: {
-      title: "",
+      payer: "you",
       amount: "",
       type: "joint",
       description: "",
@@ -80,20 +79,31 @@ export function AddExpenseForm() {
         <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
           <FieldGroup>
             <Controller
-              name="title"
+              name="payer"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="form-rhf-title">
+                  <FieldLabel htmlFor="form-rhf-payer">
                     Who Paid
                   </FieldLabel>
-                  <Input
-                    {...field}
-                    id="form-rhf-title"
-                    aria-invalid={fieldState.invalid}
-                    placeholder=""
-                    autoComplete="off"
-                  />
+                  <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm">
+                    <FieldLabel htmlFor="you">
+                      <Field orientation="horizontal">
+                        <FieldContent>
+                          <FieldTitle>You</FieldTitle>
+                        </FieldContent>
+                        <RadioGroupItem value="you" id="you" />
+                      </Field>
+                    </FieldLabel>
+                    <FieldLabel htmlFor="spouse">
+                      <Field orientation="horizontal">
+                        <FieldContent>
+                          <FieldTitle>Spouse</FieldTitle>
+                        </FieldContent>
+                        <RadioGroupItem value="spouse" id="spouse" />
+                      </Field>
+                    </FieldLabel>
+                  </RadioGroup>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
@@ -128,7 +138,7 @@ export function AddExpenseForm() {
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor="form-rhf-type">
                     Type
-                  </FieldLabel>                  
+                  </FieldLabel>
                   <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm">
                     <FieldLabel htmlFor="joint">
                       <Field orientation="horizontal">
@@ -194,7 +204,7 @@ export function AddExpenseForm() {
                         <SelectItem value="entertainment">Entertainment</SelectItem>
                         <SelectItem value="test">
                           <div className="flex items-center">
-                            <Apple className="mr-1"/>
+                            <Apple className="mr-1" />
                             test
                           </div></SelectItem>
                         <SelectItem value="other">Other</SelectItem>

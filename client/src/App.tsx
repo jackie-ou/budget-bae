@@ -3,14 +3,22 @@ import { AddExpenseForm } from "./components/AddExpenseForm";
 import { ExpenseList } from "@/components/ExpenseList";
 import { DatePicker } from "@/components/DatePicker";
 import expensesData from "@/data/expenses.json";
+import {
+  Example,
+  ExampleWrapper,
+} from "@/components/example"
 
 export function App() {
   return (
     <>
-      <AddExpenseForm />
-      <ExpenseList expenses={expensesData} />
-      <DatePicker />
-      <ComponentExample />
+      <ExampleWrapper>
+        <Example title="Add Expense Form" className="items-center justify-center">
+          <AddExpenseForm />
+        </Example>
+        <Example title="Expense List" className="items-center">
+          <ExpenseList expenses={expensesData} />
+        </Example>
+      </ExampleWrapper>
     </>
   );
 }
