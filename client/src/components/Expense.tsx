@@ -1,4 +1,4 @@
-import { ExpenseDetails } from "@/components/ExpenseDetails";
+import { AddExpenseForm } from "@/components/AddExpenseForm";
 import { Badge } from "@/components/ui/badge"
 import {
   Card,
@@ -34,7 +34,7 @@ export function Expense({ expense }: { expense: ExpenseType }) {
         </Card>
       </DialogTrigger>
       <DialogContent>
-        <ExpenseDetails expense={expense}/>
+        <AddExpenseForm />
       </DialogContent>
     </Dialog>
   )
