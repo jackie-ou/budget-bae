@@ -6,7 +6,8 @@
     "date": "Feb 16",
     "payer": "Jackie",
     "type": "Individual",
-    "mcc": "Groceries"
+    "mcc": "Groceries",
+    "notes": "this is the notes section. i purchased bread, egg, and green onion"
   },
   {
     "id": "2",
