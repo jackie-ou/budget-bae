@@ -1,4 +1,4 @@
-import { AddExpenseForm } from "@/components/AddExpenseForm";
+import { ExpenseDetails } from "@/components/ExpenseDetails";
 import { Badge } from "@/components/ui/badge"
 import {
   Card,
@@ -14,7 +14,9 @@ import {
 } from "@/components/ui/dialog";
 import type { ExpenseType } from "@/types/expense"
 
-export function Expense({ expense: { title, price, type, date } }: { expense: ExpenseType }) {
+export function Expense({ expense }: { expense: ExpenseType }) {
+  const { title, price, type, date } = expense;
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -32,7 +34,7 @@ export function Expense({ expense: { title, price, type, date } }: { expense: Ex
         </Card>
       </DialogTrigger>
       <DialogContent>
-        <AddExpenseForm />
+        <ExpenseDetails expense={expense}/>
       </DialogContent>
     </Dialog>
   )
