@@ -5,6 +5,6 @@ export interface ExpenseType {
   date: string; // TODO: Convert to Date type
   mcc?: string;
   payer?: string;
-  details?: string;
+  notes?: string;
   type: string;
 }
