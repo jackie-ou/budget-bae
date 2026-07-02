@@ -23,7 +23,7 @@ export function Expense({ expense }: { expense: ExpenseType }) {
         <Card size="sm" className="flex flex-row justify-between cursor-pointer transition-transform duration-300 hover:scale-[1.02] hover:shadow-sm" role="button" tabIndex={0}>
           <CardHeader>
             <div className="flex gap-2">
-              <CardTitle className="truncate">{title}</CardTitle>
+              <CardTitle className="truncate max-w-[200px]">{title}</CardTitle>
               <Badge>{purchase_type}</Badge>
             </div>
             <CardDescription>{transaction_date}</CardDescription>
@@ -38,4 +38,6 @@ export function Expense({ expense }: { expense: ExpenseType }) {
       </DialogContent>
     </Dialog>
   )
+
+
 }
