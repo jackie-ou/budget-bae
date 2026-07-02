@@ -14,12 +14,12 @@ export function ExpenseDetails({ expense }: { expense: ExpenseType }) {
   // Defines the fields and their corresponding formatting for the ExpenseType interface
   const expenseFields = [
     { key: "title", label: "Title" },
-    { key: "price", label: "Price", render: (v: number) => `$${v}` },
-    { key: "type", label: "Purchase Type" },
-    { key: "date", label: "Date" },
-    { key: "mcc", label: "Category" },
-    { key: "payer", label: "Who paid" },
-    { key: "notes", label: "Notes" },
+    { key: "amount", label: "Price", render: (v: number) => `$${v}` },
+    { key: "purchase_type", label: "Purchase Type" },
+    { key: "transaction_date", label: "Date" },
+    { key: "csp_category", label: "Category" },
+    { key: "payer_id", label: "Who paid" },
+    { key: "description", label: "Notes" },
   ];
 
   return (
