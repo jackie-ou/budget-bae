@@ -1,3 +1,4 @@
+import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -13,11 +14,12 @@ export function AddExpenseButton() {
             <DialogTrigger asChild>
                 <Button
                     type="button"
-                    variant="outline"
-                    className="justify-start font-normal"
+                    className="justify-start font-normal px-5 py-5 rounded-full shadow-lg"
                 >
-                    {/* TODO: add plus button on the left of the text */}
-                    Add Expense
+                    <div className="flex items-center gap-2">
+                        <Plus className="mr-1" />
+                        <p>Add Expense</p>
+                    </div>
                 </Button>
             </DialogTrigger>
             <DialogContent>
