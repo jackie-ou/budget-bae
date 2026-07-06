@@ -74,7 +74,7 @@ export function AddExpenseForm() {
   }
 
   return (
-    <Card className="w-full sm:max-w-md">
+    <Card className="flex flex-col h-full max-h-[80vh] overflow-y-auto w-full sm:max-w-md">
       <CardHeader>
         <CardTitle>Add Expense</CardTitle>
         <CardDescription>
@@ -92,6 +92,7 @@ export function AddExpenseForm() {
                   <FieldLabel htmlFor="form-rhf-payer">
                     Who Paid
                   </FieldLabel>
+                  {/* TODO: make radio buttons side-by-side */}
                   <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm">
                     <FieldLabel htmlFor="you">
                       <Field orientation="horizontal">
@@ -145,6 +146,7 @@ export function AddExpenseForm() {
                   <FieldLabel htmlFor="form-rhf-type">
                     Type
                   </FieldLabel>
+                  {/* TODO: make radio buttons side-by-side */}
                   <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm">
                     <FieldLabel htmlFor="joint">
                       <Field orientation="horizontal">
@@ -210,6 +212,7 @@ export function AddExpenseForm() {
                 </Field>
               )}>
             </Controller>
+            {/* TODO: add CSP Category dropdown */}
             <Controller
               name="category"
               control={form.control}

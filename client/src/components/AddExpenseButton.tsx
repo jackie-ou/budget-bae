@@ -22,8 +22,7 @@ export function AddExpenseButton() {
                     </div>
                 </Button>
             </DialogTrigger>
-            <DialogContent>
-                {/* FIXME: don't let form span entire page (set height) */}
+            <DialogContent className="max-h-[calc(100dvh-4rem)]">
                 <AddExpenseForm />
             </DialogContent>
         </Dialog>
