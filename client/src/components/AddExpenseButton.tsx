@@ -14,7 +14,7 @@ export function AddExpenseButton() {
             <DialogTrigger asChild>
                 <Button
                     type="button"
-                    className="justify-start font-normal px-5 py-5 rounded-full shadow-lg"
+                    className="cursor-pointer justify-start font-normal px-5 py-5 rounded-full shadow-lg"
                 >
                     <div className="flex items-center gap-2">
                         <Plus className="mr-1" />
