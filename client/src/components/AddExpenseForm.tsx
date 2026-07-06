@@ -92,8 +92,7 @@ export function AddExpenseForm() {
                   <FieldLabel htmlFor="form-rhf-payer">
                     Who Paid
                   </FieldLabel>
-                  {/* TODO: make radio buttons side-by-side */}
-                  <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm">
+                  <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm flex flex-row">
                     <FieldLabel htmlFor="you">
                       <Field orientation="horizontal">
                         <FieldContent>
@@ -146,14 +145,13 @@ export function AddExpenseForm() {
                   <FieldLabel htmlFor="form-rhf-type">
                     Type
                   </FieldLabel>
-                  {/* TODO: make radio buttons side-by-side */}
-                  <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm">
+                  <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm flex flex-row">
                     <FieldLabel htmlFor="joint">
                       <Field orientation="horizontal">
                         <FieldContent>
                           <FieldTitle>Joint</FieldTitle>
                           <FieldDescription>
-                            Use for shared costs like rent, groceries, or dining out together.
+                            Shared costs
                           </FieldDescription>
                         </FieldContent>
                         <RadioGroupItem value="joint" id="joint" />
@@ -164,7 +162,7 @@ export function AddExpenseForm() {
                         <FieldContent>
                           <FieldTitle>Individual</FieldTitle>
                           <FieldDescription>
-                            Use for personal purchases like hobbies, clothes, or gifts.
+                            Personal
                           </FieldDescription>
                         </FieldContent>
                         <RadioGroupItem value="individual" id="individual" />
