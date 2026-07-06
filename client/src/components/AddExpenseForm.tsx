@@ -47,12 +47,14 @@ import { toast } from "sonner"
 export function AddExpenseForm() {
   const form = useForm({
     defaultValues: {
+      title: "",
       payer: "you",
       amount: "",
       type: "joint",
       description: "",
       datePicker: new Date(),
       category: "",
+      cspCategory: "",
     },
   })
 
@@ -84,6 +86,27 @@ export function AddExpenseForm() {
       <CardContent>
         <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
           <FieldGroup>
+            <Controller
+              name="title"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="form-rhf-title">
+                    Title
+                  </FieldLabel>
+                  <Input
+                    {...field}
+                    id="form-rhf-title"
+                    aria-invalid={fieldState.invalid}
+                    placeholder="$0.00"
+                    autoComplete="off"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
             <Controller
               name="payer"
               control={form.control}
@@ -143,7 +166,7 @@ export function AddExpenseForm() {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor="form-rhf-type">
-                    Type
+                    Joint vs Individual
                   </FieldLabel>
                   <RadioGroup value={field.value} onValueChange={field.onChange} className="max-w-sm flex flex-row">
                     <FieldLabel htmlFor="joint">
@@ -210,14 +233,13 @@ export function AddExpenseForm() {
                 </Field>
               )}>
             </Controller>
-            {/* TODO: add CSP Category dropdown */}
             <Controller
               name="category"
               control={form.control}
               render={() => (
                 <Field>
-                  <FieldLabel htmlFor="form-rhf-demo-description">
-                    Category
+                  <FieldLabel htmlFor="form-rhf-category">
+                    Spending Category
                   </FieldLabel>
                   <Select>
                     <SelectTrigger className="w-full">
@@ -225,7 +247,7 @@ export function AddExpenseForm() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectLabel>Purchase categories</SelectLabel>
+                        <SelectLabel>Spending categories</SelectLabel>
                         <SelectItem value="dining">Dining</SelectItem>
                         <SelectItem value="gas">Gas</SelectItem>
                         <SelectItem value="groceries">Groceries</SelectItem>
@@ -248,12 +270,35 @@ export function AddExpenseForm() {
               )}>
             </Controller>
             <Controller
+              name="cspCategory"
+              control={form.control}
+              render={() => (
+                <Field>
+                  <FieldLabel htmlFor="form-rhf-csp-category">
+                    CSP Category
+                  </FieldLabel>
+                  <Select>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select a category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>CSP categories</SelectLabel>
+                        <SelectItem value="fixed-costs">Fixed Costs</SelectItem>
+                        <SelectItem value="guilt-free-spending">Guilt-Free Spending</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </Field>
+              )}>
+            </Controller>
+            <Controller
               name="description"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor="form-rhf-demo-description">
-                    Notes (optional)
+                    Description (optional)
                   </FieldLabel>
                   <InputGroup>
                     <InputGroupTextarea
