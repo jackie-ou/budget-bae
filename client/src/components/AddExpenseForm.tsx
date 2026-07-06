@@ -98,8 +98,8 @@ export function AddExpenseForm() {
                     {...field}
                     id="form-rhf-title"
                     aria-invalid={fieldState.invalid}
-                    placeholder="$0.00"
-                    autoComplete="off"
+                    type="text"
+                    placeholder="Enter expense title..."
                   />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -139,6 +139,7 @@ export function AddExpenseForm() {
                 </Field>
               )}
             />
+            {/* FIXME: ensure input is a number, keep $ when inputting */}
             <Controller
               name="amount"
               control={form.control}
