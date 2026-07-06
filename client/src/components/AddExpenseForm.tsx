@@ -43,22 +43,23 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { toast } from "sonner"
+import type { ExpenseType } from "@/types/expense"
 
 export function AddExpenseForm() {
   const form = useForm({
     defaultValues: {
       title: "",
-      payer: "you",
+      payer_id: "you",
       amount: "",
-      type: "joint",
+      purchase_type: "joint",
       description: "",
-      datePicker: new Date(),
-      category: "",
-      cspCategory: "",
+      transaction_date: new Date(),
+      category_id: "",
+      csp_category: "",
     },
   })
 
-  function onSubmit(data) {
+  function onSubmit(data: ExpenseType) {
     console.log(data);
     toast("You submitted the following values:", {
       description: (
@@ -109,7 +110,7 @@ export function AddExpenseForm() {
               )}
             />
             <Controller
-              name="payer"
+              name="payer_id"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
@@ -171,7 +172,7 @@ export function AddExpenseForm() {
               )}
             />
             <Controller
-              name="type"
+              name="purchase_type"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
@@ -209,7 +210,7 @@ export function AddExpenseForm() {
               )}
             />
             <Controller
-              name="datePicker"
+              name="transaction_date"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
@@ -245,7 +246,7 @@ export function AddExpenseForm() {
             </Controller>
             {/* FIXME: category & CSP category not working */}
             <Controller
-              name="category"
+              name="category_id"
               control={form.control}
               render={({ field }) => (
                 <Field>
@@ -284,7 +285,7 @@ export function AddExpenseForm() {
               )}>
             </Controller>
             <Controller
-              name="cspCategory"
+              name="csp_category"
               control={form.control}
               render={({ field }) => (
                 <Field>
