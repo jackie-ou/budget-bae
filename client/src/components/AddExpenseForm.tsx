@@ -139,7 +139,6 @@ export function AddExpenseForm() {
                 </Field>
               )}
             />
-            {/* FIXME: ensure input is a number, keep $ when inputting */}
             <Controller
               name="amount"
               control={form.control}
@@ -148,14 +147,23 @@ export function AddExpenseForm() {
                   <FieldLabel htmlFor="form-rhf-amount">
                     Amount
                   </FieldLabel>
-                  <Input
-                    {...field}
-                    id="form-rhf-amount"
-                    aria-invalid={fieldState.invalid}
-                    placeholder="$0.00"
-                    autoComplete="off"
-                  />
-                  {fieldState.invalid && (
+                  <div className="relative flex items-center w-full">
+                    {/* Absolute dollar sign overlay */}
+                    <span className="absolute left-3 text-sm text-muted-foreground select-none pointer-events-none">
+                      $
+                    </span>
+
+                    {/* Input field with left padding (pl-7) to prevent text overlap */}
+                    <Input
+                      {...field}
+                      id="form-rhf-amount"
+                      aria-invalid={fieldState.invalid}
+                      placeholder="0.00"
+                      type="number"
+                      autoComplete="off"
+                      className="pl-7"
+                    />
+                  </div>                  {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
                 </Field>
