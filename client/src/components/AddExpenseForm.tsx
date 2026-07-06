@@ -59,6 +59,7 @@ export function AddExpenseForm() {
   })
 
   function onSubmit(data) {
+    console.log(data);
     toast("You submitted the following values:", {
       description: (
         <pre className="bg-code text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md p-4">
@@ -242,15 +243,19 @@ export function AddExpenseForm() {
                 </Field>
               )}>
             </Controller>
+            {/* FIXME: category & CSP category not working */}
             <Controller
               name="category"
               control={form.control}
-              render={() => (
+              render={({ field }) => (
                 <Field>
                   <FieldLabel htmlFor="form-rhf-category">
                     Spending Category
                   </FieldLabel>
-                  <Select>
+                  <Select
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
@@ -281,12 +286,15 @@ export function AddExpenseForm() {
             <Controller
               name="cspCategory"
               control={form.control}
-              render={() => (
+              render={({ field }) => (
                 <Field>
                   <FieldLabel htmlFor="form-rhf-csp-category">
                     CSP Category
                   </FieldLabel>
-                  <Select>
+                  <Select
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select a category" />
                     </SelectTrigger>
@@ -338,6 +346,7 @@ export function AddExpenseForm() {
           <Button type="button" variant="outline" onClick={() => form.reset()}>
             Reset
           </Button>
+          {/* TODO: have submit insert record in supabase */}
           <Button type="submit" form="form-rhf-demo">
             Submit
           </Button>

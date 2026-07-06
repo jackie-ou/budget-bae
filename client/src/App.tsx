@@ -3,6 +3,7 @@ import expensesData from "@/data/expenses.json";
 import { useState, useEffect } from 'react'
 import { supabase } from "./utils/supabase";
 import { AddExpenseButton } from "./components/AddExpenseButton";
+import { Toaster } from "sonner";
 
 export function App() {
   const [transactions, setTransactions] = useState([])
@@ -22,6 +23,7 @@ export function App() {
 
   return (
     <>
+      <Toaster />
       <section className="grid place-items-center h-screen">
         <ExpenseList expenses={transactions} />
         <AddExpenseButton />
