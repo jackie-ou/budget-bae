@@ -29,7 +29,7 @@ export function Expense({ expense }: { expense: ExpenseType }) {
             <CardDescription>{transaction_date}</CardDescription>
           </CardHeader>
           <CardContent>
-            <span>${amount}</span>
+            <span className="amount text-base font-medium">${amount}</span>
           </CardContent>
         </Card>
       </DialogTrigger>
