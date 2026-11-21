@@ -20,6 +20,13 @@ export interface Api {
 
   listCategories(): Promise<Category[]>;
   createCategory(name: string): Promise<Category>;
+  /** Renames a category and every expense filed under its old name. */
+  renameCategory(id: string, name: string): Promise<Category>;
+  /**
+   * Deletes a category. If expenses still use it, `moveExpensesTo` (another
+   * category's name) is required and those expenses are moved there.
+   */
+  deleteCategory(id: string, moveExpensesTo?: string): Promise<void>;
 
   listBudgets(): Promise<Budget[]>;
   upsertBudget(budget: Budget): Promise<void>;

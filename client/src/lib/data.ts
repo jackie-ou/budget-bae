@@ -75,6 +75,33 @@ export function useAddCategory() {
   });
 }
 
+/** Renaming and deleting both rewrite expenses, so refresh both lists. */
+function useInvalidateCategoriesAndExpenses() {
+  const qc = useQueryClient();
+  return () =>
+    Promise.all([
+      qc.invalidateQueries({ queryKey: queryKeys.categories }),
+      qc.invalidateQueries({ queryKey: queryKeys.expenses }),
+    ]);
+}
+
+export function useRenameCategory() {
+  const invalidate = useInvalidateCategoriesAndExpenses();
+  return useMutation({
+    mutationFn: ({ id, name }: { id: string; name: string }) => api.renameCategory(id, name),
+    onSuccess: invalidate,
+  });
+}
+
+export function useDeleteCategory() {
+  const invalidate = useInvalidateCategoriesAndExpenses();
+  return useMutation({
+    mutationFn: ({ id, moveExpensesTo }: { id: string; moveExpensesTo?: string }) =>
+      api.deleteCategory(id, moveExpensesTo),
+    onSuccess: invalidate,
+  });
+}
+
 export function useSaveBudget() {
   const qc = useQueryClient();
   return useMutation({

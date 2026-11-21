@@ -75,7 +75,9 @@ export function ExpenseForm({ expense, onDone }: { expense: Expense | null; onDo
   const [amount, setAmount] = useState(expense ? String(expense.amount) : "");
   const [date, setDate] = useState<Date>(expense ? parseDay(expense.expense_date) : new Date());
   const [dateOpen, setDateOpen] = useState(false);
-  const [category, setCategory] = useState(expense?.category ?? "Groceries");
+  const [pickedCategory, setCategory] = useState(expense?.category ?? "");
+  // New expenses default to the first category until one is picked.
+  const category = pickedCategory || categories?.[0]?.name || "";
   const [type, setType] = useState<ExpenseType>(expense?.expense_type ?? "shared");
   const [card, setCard] = useState<Person>(expense?.card_owner ?? "dorothy");
   const [owner, setOwner] = useState<Person | "">(expense?.personal_owner ?? "");
@@ -92,6 +94,7 @@ export function ExpenseForm({ expense, onDone }: { expense: Expense | null; onDo
     const amt = Number(amount);
     if (!title.trim()) errs.title = "Give it a name";
     if (!amount || isNaN(amt) || amt <= 0) errs.amount = "Enter an amount above $0";
+    if (!category) errs.category = "Add a category in Settings first";
     if (type === "individual" && !owner) errs.owner = "Choose whose expense this is";
     setErrors(errs);
     if (Object.keys(errs).length) return;
@@ -226,6 +229,7 @@ export function ExpenseForm({ expense, onDone }: { expense: Expense | null; onDo
               ))}
             </SelectContent>
           </Select>
+          {errors.category && <p className="text-xs text-destructive">{errors.category}</p>}
         </div>
 
         <div className="grid gap-1.5">

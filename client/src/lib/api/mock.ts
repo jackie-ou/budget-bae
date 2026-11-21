@@ -50,6 +50,31 @@ export function createMockApi(): Api {
       categories = [...categories, row];
       return row;
     },
+    async renameCategory(id, name) {
+      const existing = categories.find((c) => c.id === id);
+      if (!existing) throw new Error("Category not found");
+      if (categories.some((c) => c.id !== id && c.name.toLowerCase() === name.toLowerCase())) {
+        throw new Error(`"${name}" already exists`);
+      }
+      const row = { ...existing, name };
+      categories = categories.map((c) => (c.id === id ? row : c));
+      expenses = expenses.map((e) => (e.category === existing.name ? { ...e, category: name } : e));
+      return row;
+    },
+    async deleteCategory(id, moveExpensesTo) {
+      const existing = categories.find((c) => c.id === id);
+      if (!existing) throw new Error("Category not found");
+      const inUse = expenses.some((e) => e.category === existing.name);
+      if (inUse) {
+        if (!moveExpensesTo || !categories.some((c) => c.id !== id && c.name === moveExpensesTo)) {
+          throw new Error("Choose another category for its expenses");
+        }
+        expenses = expenses.map((e) =>
+          e.category === existing.name ? { ...e, category: moveExpensesTo } : e,
+        );
+      }
+      categories = categories.filter((c) => c.id !== id);
+    },
 
     async listBudgets() {
       return [...budgets];
