@@ -1,13 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Panel } from "@/components/Panel"
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -172,12 +166,12 @@ function Components() {
         <Button variant="ghost">Ghost</Button>
         <Button variant="destructive">Destructive</Button>
       </div>
-      <Card className="max-w-sm">
-        <CardHeader>
-          <CardTitle>Shared groceries</CardTitle>
-          <CardDescription>Nov 7 · Dorothy's card</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3">
+      <Panel className="flex max-w-sm flex-col gap-3">
+        <div>
+          <h3 className="text-xl">Shared groceries</h3>
+          <p className="text-sm text-muted-foreground">Nov 7 · Dorothy's card</p>
+        </div>
+        <div className="flex flex-col gap-3">
           <span className="amount text-2xl">$84.20</span>
           <Input placeholder="Add a note" />
           <Select>
@@ -189,8 +183,8 @@ function Components() {
               <SelectItem value="dining">Dining</SelectItem>
             </SelectContent>
           </Select>
-        </CardContent>
-      </Card>
+        </div>
+      </Panel>
     </div>
   )
 }
