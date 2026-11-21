@@ -38,7 +38,7 @@ const groups: { title: string; swatches: Swatch[] }[] = [
   {
     title: "People",
     swatches: [
-      { token: "dorothy", label: "dorothy (terracotta)" },
+      { token: "dorothy", label: "dorothy (dusty rose)" },
       { token: "jackie", label: "jackie (blue)" },
     ],
   },
