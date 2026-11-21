@@ -12,3 +12,9 @@ Start storybook:
 cd /client    
 npm run storybook
 ```
+
+Run unit tests:
+```
+cd /client
+npm test
+```
