@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 @import "@fontsource-variable/fraunces";
 @import "@fontsource-variable/plus-jakarta-sans";
 
@@ -54,13 +53,14 @@
   --input: oklch(0.88 0.015 75);
   --ring: oklch(0.6 0.06 145);
 
-  /* Charts */
-  --chart-1: oklch(0.58 0.07 145);
-  --chart-2: oklch(0.68 0.08 50);
-  --chart-3: oklch(0.6 0.05 230);
-  --chart-4: oklch(0.75 0.08 85);
-  --chart-5: oklch(0.55 0.06 330);
-  --chart-6: oklch(0.5 0.03 60);
+  /* Charts — Lovable hues with chroma raised so the six categorical slots
+   * pass the colorblind-separation and chroma-floor checks on --card. */
+  --chart-1: oklch(0.52 0.11 150); /* sage */
+  --chart-2: oklch(0.68 0.13 45); /* terracotta */
+  --chart-3: oklch(0.48 0.105 250); /* blue */
+  --chart-4: oklch(0.76 0.13 85); /* mustard */
+  --chart-5: oklch(0.58 0.12 335); /* plum */
+  --chart-6: oklch(0.46 0.1 60); /* brown */
 
   /* Elevation */
   --shadow-soft: 0 1px 2px oklch(0.4 0.03 60 / 0.06), 0 8px 24px -12px oklch(0.4 0.03 60 / 0.18);
